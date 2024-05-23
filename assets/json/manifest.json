@@ -1,0 +1,26 @@
+{
+    "name": "Descobreix Teatre",
+    "short_name": "Descobreix Teatre",
+    "description": "Aplicación web progesiva que permite localizar los teatros de las Islas Baleares.",
+    "start_url": "/index.html",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "icons":[
+      {
+        "src": "/assets/img/svg/hero-img.svg",
+        "sizes": "144x144"
+      },
+      {
+        "src": "/assets/img/svg/descobreixteatre.svg",
+        "sizes": "144x144",
+        "purpose": "maskable"
+      },
+      {
+        "src": "/assets/img/presentacion.png",
+        "sizes": "512x512"
+      }
+    ],
+    "display": "standalone",
+    "scope": "/",
+    "service_worker": "assets/js/service-worker.js"
+  }

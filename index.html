@@ -1,0 +1,2660 @@
+<!DOCTYPE html>
+<html lang="es-Es">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-43Q7MJPKMQ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-43Q7MJPKMQ');
+    </script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="Pagina realizada como proposito educativo, la siguiente página web no trata de proporcionar información veridica. Autores: Rubén Ramis, Sílvia Moià y Arnau Vidal">
+
+    <title>Descobreix Teatre</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <link rel="manifest" href="assets/json/manifest.json">
+
+    <!-- Favicons -->
+    <link href="assets/img/svg/hero-img.svg" rel="icon">
+    <link href="assets/img/svg/hero-img.svg" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/main.css" rel="stylesheet">
+
+    <!--  Leaflet -->
+    <link rel="stylesheet" href="lib/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="lib/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+
+
+    <!-- =======================================================
+  * Template Name: Yummy
+  * Updated: Jan 30 2024 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div id="nose" class="container d-flex align-items-center justify-content-between">
+
+            <button onclick="reloadIndex()" class="logo d-flex align-items-center me-auto me-lg-0">
+                <h1>Teatre<span>.</span></h1>
+            </button>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="#hero">Inici</a></li>
+                    <li><a href="#menu">Teatres</a></li>
+                    <li><a href="#events">Obres</a></li>
+                    <li><a href="#mapa">Mapa events</a></li>
+                    <li><a href="#about">Sobre nosaltres</a></li>
+                </ul>
+            </nav><!-- .navbar -->
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+        </div>
+    </header><!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="hero d-flex align-items-center section-bg">
+        <div class="container" id="info">
+            <div class="row justify-content-between gy-5">
+                <div
+                    class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+                    <h2  id="Name">Descobreix<br>Teatre!</h2>
+                    <p  id="Description">Totes les obres teatrals de Balears les tens només a un click. Entra i descobreix-ho!</p>
+                </div>
+                <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+                    <img src="assets/img/svg/hero-img.svg" class="img-fluid img-indexHero-medidas" alt="" id="ImageMain">
+                </div>
+            </div>
+        </div>
+    </section><!-- End Hero Section -->
+
+    <main id="main">
+    <!-- ======= Menu Section ======= -->
+        <section id="menu" class="menu">
+            <div class="container">
+
+                <div class="section-header">
+                    <p>Consulta qualsevol <span>Teatre </span>del teu entorn</p>
+                </div>
+
+                <label for="filtraPer" class="visually-hidden">Filtra per</label>
+                    <select class="form-select" id="filtraPer" style="border-radius: 4px;">
+                      <option vlue="Totes les illes" selected>Totes les illes</option>
+                      <option value="Mallorca">Mallorca</option>
+                      <option value="Menorca">Menorca</option>
+                      <option value="Eivissa">Eivissa</option>
+                </select>
+                 
+                <div class="tab-content" id="teatres">
+                </div>
+
+            </div>
+        </section><!-- End Menu Section -->
+
+        <!-- ======= Events Section ======= -->
+        <section id="events" class="events section-bg">
+            <div class="container-fluid">
+
+                <div class="section-header">
+                    <h2>Obres</h2>
+                    <p>Obres <span>aquest mes</span> a les Balears</p>
+                </div>
+
+                <div id="desplazamiento">
+                </div>
+
+            </div>
+        </section><!-- End Events Section -->
+
+
+        <!-- ======= Contact Section ======= -->
+        <section id="mapa">
+            <div class="container">
+
+                <div class="section-header">
+                    <h2>Mapa</h2>
+                    <p>Descobreix <span>Events</span></p>
+                </div>
+                <div class="mapa-contenedor">
+                    <div id="map" class="mapa-align"></div> <!-- Contenedor del mapa -->
+                    <div class="mapa-element">
+                        <div class="mapa-filter">
+                            <p>Seleccioni quin event vol visualizar:</p>
+                            <label for="filtraMapa" class="visually-hidden">Filtra per</label>
+                                <select class="form-select" id="filtraMapa" style="border-radius: 4px;">
+                                <option vlue="Teatres" selected>Teatres</option>
+                                <option value="Fires">Fires</option>
+                                <option value="Festes">Festes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p>Vols visualizar la teva posició?</p>
+                            <button id="mapa-button" class="mapa-button" onclick="geoPosicion()">Ubicam</button>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Contact Section -->
+
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about section-bg">
+            <div class="container">
+          
+              <div class="section-header">
+                <h2>Sobre nosaltres</h2>
+                <p>Qui som <span>?</span></p>
+              </div>
+          
+              <div class="row d-flex">  <div class="col-lg-5 content ps-0 ps-lg-5">  <p class="fst-italic">
+                    Som un grup que està cursant l'assignatura de Multimèdia del grau d'Enginyeria Informàtica Universitat de les Illes Balears.
+                  </p>
+                  <ul>
+                    <li><i class="bi bi-check2-all"></i> Rubén Ramis</li>
+                    <li><i class="bi bi-check2-all"></i> Arnau Vidal</li>
+                    <li><i class="bi bi-check2-all"></i> Sílvia Moià</li>
+                  </ul>
+                </div>
+          
+                <div class="col-lg-7"> 
+                     <div class="position-relative mt-4">
+                        <img src="assets/img/about-2.jpg" class="img-fluid img-indexContador-medidas" alt="">
+                        <a href="assets/vid/DescobreixTeatre.mp4" class="glightbox play-btn" aria-label="Nuestra presentacion"></a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- End About Section -->
+
+                <!-- ======= Stats Counter Section ======= -->
+                <section id="stats-counter" class="stats-counter">
+                    <div class="container">
+        
+                        <div id="cont" class="row gy-4">
+                        </div>
+        
+                    </div>
+                </section><!-- End Stats Counter Section -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+        <div class="container">
+            <div class="row gy-3">
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-telephone icon"></i>
+                    <div>
+                        <p class="cont-index">Contacte</p>
+                        <p>
+                            <strong>Telèfon:</strong> +34 622 22 22 22<br>
+                            <strong>Correu:</strong> info@descobreixteatre.com<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-clock icon"></i>
+                    <div>
+                        <p class="cont-index">Disponibilitat horària</p>
+                        <p>
+                            <strong>Dill-Div: 11AM</strong> - 14PM<br>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-patch-exclamation-fill icon"></i>
+                    <div>
+                        <p class="cont-index">Advertència</p>
+                        <p>
+                            <strong>Aquesta pàgina web no ofereix informació encertada, si us plau no fer servir la informació com a referència</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-cloud-moon-fill icon"></i>
+                    <div>
+                        <p class="cont-index">Propòsit</p>
+                        <p>
+                            Pàgina web desenvolupada com a pràctica per a la asignatura 21755-Tecnologia Multimedia d'Enginyeria Informàtica de la Universitat de les Illes Balears
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+
+    </footer><!-- End Footer -->
+    <!-- End Footer -->
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/teatre.js"></script>
+    <script src="assets/js/obres.js"></script>
+    <script src="lib/leaflet/leaflet.js"></script>
+    <script async src="lib/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="assets/js/mapa.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('assets/js/service-worker.js')
+                .then(function(registration) {
+                    console.log('Service Worker registrado con éxito con alcance:',registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Registro de Service Worker fallido:', error);
+                });
+        }
+        </script>
+    <script type="application/ld+json">
+        {
+            "@context":"http://schema.org",
+            "@type":"itemList",
+            "itemListElement" :[
+                {
+                    "@type":"MovieTheater",
+                    "name": "Teatre Principal de Palma",
+                    "identifier": "0",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality":"Palma",
+                        "addressRegion":"Mallorca",
+                        "postalCode":"07003"
+                        },
+                    "geo":{
+                        "@type":"GeoCoordinates",
+                        "latitude":"39.57195114476199",
+                        "longitude":"2.650261786114213"
+                    },
+                    "telephone": "971219700",
+                    "image": {
+                        "@type":"ImageObject",
+                        "contentUrl":"assets/img/teatres/teatreprincipaldepalma.jpg"
+                    },
+                    "description": "Antic teatre clàssic edificat el 1667 i reformat que ofereix espectacles d´òpera, sarsuela i dansa.",
+                    "url":"https://www.teatreprincipal.com/ca/",
+                    "additionalProperty":{
+                          "@type": "PropertyValue",
+                          "name": "hasAudio",
+                          "value": true,
+                          "url":"assets/aud/TeatrePrincipalPalma.mp3"
+                    },
+                    "event":[
+                        {
+                            "@type":"Event",
+                            "name":"Los Perros",
+                            "identifier": "0",
+                            "startDate": "2024-04-04",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Led Silhouette"
+                            },
+                            "duration": "PT50M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Jon López",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JonLopez.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martxel Rodriguez",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartxelRodriguez.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/losperros.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                "@type": "PropertyValue",
+                                "name": "hasVideo",
+                                "value": true,
+                                "url": "assets/vid/LosPerros.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 15
+                                }
+                            ],
+                            "description": "Los Perros proposa assolir un estat de resistència. com a gossos que passegen, gossos que es troben, que es reconeixen vulnerables, que comparteixen alegria, però també dolor, que cauen i s´aixequen, que ballen, que es rebel·len a través de l´amor, la generositat i el compromís, per trobar-hi trajecte comú el sentit de les pròpies vides, per superar junts la violència i el deteriorament. Plantegem una proposta que viatja des del tràngol de la repetició a la fascinació per la successió d´imatges. Imatges robades de l´ahir i llançades al matí, de l´ara i empastifades del passat, de la plàstica contemporània a la forma atàvica, terrenal, en una cruïlla constant de temps i de llenguatges. El desplegament d´una dansa passional que troba el sentit més pur en la repetició i en la catarsi: ballar fins a l´extenuació, bordar fins a l´abatiment, viure fins al defalliment. El relat de l´home que es contempla a l´altre per trobar-se a si mateix. Dos homes abraçats. Dos homes que ballen fins que tot s´acabi i tot torni a començar.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"No entiendo la obra, donde estan los perros?",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"1"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Ha sido una obra muy decente, uno puede dormir muy placidamente en el teatro.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Frieren"
+                                        },
+                                        "ratingValue":"3.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa y representa perfectamente la sociedad actual, la recomiendo completamente.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@type":"MovieTheater",
+                    "name": "Teatre i Auditori de Manacor",
+                    "identifier": "1",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality":"Manacor",
+                        "addressRegion":"Mallorca",
+                        "postalCode":"07500"
+                    },
+                    "geo":{
+                        "@type":"GeoCoordinates",
+                        "latitude":"39.570238415271824",
+                        "longitude":"3.219984173944753"
+                    },
+                    "telephone": "971554549",
+                    "image": {
+                        "@type":"ImageObject",
+                        "contentUrl":"assets/img/teatres/teatreiauditoridemanacor.jpg"
+                    },
+                    "description": "El Teatre Municipal de Manacor és un complex teatral situat a l´avinguda del Parc s/n de Manacor (Illes Balears). Va ser construït per iniciativa de l´Ajuntament de Manacor. Tot i que l´edifici es va començar a bastir a començaments de la dècada dels anys 70 del segle xx, no es va inaugurar fins al 30 de desembre de 1985, amb la sarsuela Ai Quaquín que has vengut de prim! del manacorí Sebastià Rubí. ",
+                    "url":"https://teatredemanacor.cat/",
+                    "additionalProperty":{
+                        "@type": "PropertyValue",
+                        "name":"hasAudio",
+                        "value":true,
+                        "url": "assets/aud/TeatreManacor.mp3"
+                    },
+                    "event":[
+                        {
+                            "@type":"Event",
+                            "name":"Los Perros",
+                            "identifier": "0",
+                            "startDate": "2024-04-04",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Led Silhouette"
+                            },
+                            "duration": "PT50M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Jon López",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JonLopez.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martxel Rodriguez",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartxelRodriguez.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/losperros.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                "@type": "PropertyValue",
+                                "name": "hasVideo",
+                                "value": true,
+                                "url": "assets/vid/LosPerros.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 15
+                                }
+                            ],
+                            "description": "Los Perros proposa assolir un estat de resistència. com a gossos que passegen, gossos que es troben, que es reconeixen vulnerables, que comparteixen alegria, però també dolor, que cauen i s´aixequen, que ballen, que es rebel·len a través de l´amor, la generositat i el compromís, per trobar-hi trajecte comú el sentit de les pròpies vides, per superar junts la violència i el deteriorament. Plantegem una proposta que viatja des del tràngol de la repetició a la fascinació per la successió d´imatges. Imatges robades de l´ahir i llançades al matí, de l´ara i empastifades del passat, de la plàstica contemporània a la forma atàvica, terrenal, en una cruïlla constant de temps i de llenguatges. El desplegament d´una dansa passional que troba el sentit més pur en la repetició i en la catarsi: ballar fins a l´extenuació, bordar fins a l´abatiment, viure fins al defalliment. El relat de l´home que es contempla a l´altre per trobar-se a si mateix. Dos homes abraçats. Dos homes que ballen fins que tot s´acabi i tot torni a començar.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"No entiendo la obra, donde estan los perros?",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"1"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Ha sido una obra muy decente, uno puede dormir muy placidamente en el teatro.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Frieren"
+                                        },
+                                        "ratingValue":"3.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa y representa perfectamente la sociedad actual, la recomiendo completamente.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                }
+                            ]
+                        },
+                            {
+                                "@type":"Event",
+                                "name":"La mala dicció",
+                                "identifier": "1",
+                                "startDate": "2024-05-14",
+                                "director":{
+                                    "@type":"Person",
+                                    "givenName": "Xavier Albertí"
+                                },
+                                "duration": "PT70M",
+                                "actor":[
+                                    {
+                                        "@type": "Person",
+                                        "givenName": "Paula Malia",
+                                        "image":{
+                                            "@type":"ImageObject",
+                                            "contentUrl":"assets/img/actors/Paula_Malia.jpg"
+                                        }
+                                    },
+                                    {
+                                        "@type": "Person",
+                                        "givenName": "Jordi Oriol",
+                                        "image":{
+                                            "@type":"ImageObject",
+                                            "contentUrl":"assets/img/actors/JordiOriol.jpg"
+                                        }
+                                    },
+                                    {
+                                        "@type": "Person",
+                                        "givenName": "Carles Pedragosa",
+                                        "image":{
+                                            "@type":"ImageObject",
+                                            "contentUrl":"assets/img/actors/CarlesPedragosa.jpg"
+                                        }
+                                    }
+                                ],
+                                "image":{
+                                    "@type":"ImageObject",
+                                    "contentUrl":"assets/img/obres/lamaladiccio.jpg"
+                                },
+                                "additionalProperty":[
+                                    {
+                                        "@type": "PropertyValue",
+                                        "name": "hasVideo",
+                                        "value": true,
+                                        "url": "assets/vid/LaMalaDiccio.mp4"
+                                    },
+                                    {
+                                        "@type": "PropertyValue",
+                                        "name": "price",
+                                        "value": 8
+                                    }
+                            ],
+                                "description": "La mala dicció completa la Trilogia del Lament, amb la qual Jordi Oriol reinterpreta tres tragèdies shakespearianes posant la pròpia paraula al centre de l´acció per poder reflexionar sobre les paradoxes que la llengua crea en els éssers humans. Si La caiguda d´Amlet (o La Caiguda de l´ac) (2007) pervertia “Hamlet” amb un sol personatge, i l´empestat (2015) pervertia “La Tempesta” amb dos personatges, aquesta darrera creació s´inspira amb “ Macbeth”, posant en escena tres personatges que traslladen, avui dia, no tant el tema de l´ambició per posseir el poder, sinó com actuem posseïts per aquest.",
+                                "review":[
+                                    {
+                                        "@type":"Review",
+                                        "reviewBody":"Que recuerdos!!!",
+                                        "reviewRating":{
+                                            "@type":"Rating",
+                                            "author":{
+                                                "@type": "Person",
+                                                "givenName": "Haiter"
+                                            },
+                                            "ratingValue":"4.5"
+                                        }
+                                    },
+                                    {
+                                        "@type":"Review",
+                                        "reviewBody":"Pika pi pika pika pikacuuu!!",
+                                        "reviewRating":{
+                                            "@type":"Rating",
+                                            "author":{
+                                                "@type": "Person",
+                                                "givenName": "Pikachu"
+                                            },
+                                            "ratingValue":"5"
+                                        }
+                                    },
+                                    {
+                                        "@type":"Review",
+                                        "reviewBody":"No se me ocurren ideas",
+                                        "reviewRating":{
+                                            "@type":"Rating",
+                                            "author":{
+                                                "@type": "Person",
+                                                "givenName": "Ghost"
+                                            },
+                                            "ratingValue":"3"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "@type":"Event",
+                                "name":"Els dies bons",
+                                "identifier": "2",
+                                "startDate": "2024-07-04",
+                                "director":{
+                                    "@type":"Person",
+                                    "givenName": "Joan Fullana"
+                                },
+                                "duration": "PT80M",
+                                "actor":[
+                                    {
+                                        "@type": "Person",
+                                        "givenName": "Caterina Alorda",
+                                        "image":{
+                                            "@type":"ImageObject",
+                                            "contentUrl":"assets/img/actors/CaterinaAlorda.jpg"
+                                        }
+                                    },
+                                    {
+                                        "@type": "Person",
+                                        "givenName": "Àlvar Triay",
+                                        "image":{
+                                            "@type":"ImageObject",
+                                            "contentUrl":"assets/img/actors/AlvarTriay.jpg"
+                                        }
+                                    },
+                                    {
+                                        "@type": "Person",
+                                        "givenName": "Lulú Cormican",
+                                        "image":{
+                                            "@type":"ImageObject",
+                                            "contentUrl":"assets/img/actors/LuluCormican.jpg"
+                                        }
+                                    },
+                                    {
+                                        "@type": "Person",
+                                        "givenName": "Lluís Marquès",
+                                        "image":{
+                                            "@type":"ImageObject",
+                                            "contentUrl":"assets/img/actors/LluisMarques.jpg"
+                                        }
+                                    },
+                                    {
+                                        "@type": "Person",
+                                        "givenName": "Neus Cortès",
+                                        "image":{
+                                            "@type":"ImageObject",
+                                            "contentUrl":"assets/img/actors/NeusCortes.jpg"
+                                        }
+                                    }
+                                ],
+                                "image":{
+                                    "@type":"ImageObject",
+                                    "contentUrl":"assets/img/obres/elsdiesbons.jpg"
+                                },
+                                "additionalProperty":[
+                                    {
+                                        "@type": "PropertyValue",
+                                        "name": "hasVideo",
+                                        "value": true,
+                                        "url": "assets/vid/ElsDiesBons.mp4"
+                                    },
+                                    {
+                                        "@type": "PropertyValue",
+                                        "name": "price",
+                                        "value": 10
+                                    }
+                                ],
+                                "description": "Els dies bons és la història d´una família travessada per les addiccions. Tot comença amb la intensa vida de Xavier, marcada per les drogues i les mentides, i continua amb la seva relació amb la Martina i la filla de tots dos, l´Ariadna, que es veuran sotmeses a les conseqüències tràgiques d´aquesta vida desmesurada, moltes vegades sense adonar-se´n . Com un fil imperceptible, lleuger i alhora implacable, la força dels fets els envolta en un destí que sembla repetir-se, inexorable. deslligades. Adaptació teatral de la novel·la homònima d´Aina Fullana Llull, Premi València Alfons al Magnànim de Narrativa 2021, entre d´altres distincions.",
+                                "review":[
+                                    {
+                                        "@type":"Review",
+                                        "reviewBody":"Que recuerdos!!!",
+                                        "reviewRating":{
+                                            "@type":"Rating",
+                                            "author":{
+                                                "@type": "Person",
+                                                "givenName": "Himmel"
+                                            },
+                                            "ratingValue":"4.5"
+                                        }
+                                    },
+                                    {
+                                        "@type":"Review",
+                                        "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                        "reviewRating":{
+                                            "@type":"Rating",
+                                            "author":{
+                                                "@type": "Person",
+                                                "givenName": "Jephy Damer"
+                                            },
+                                            "ratingValue":"2.5"
+                                        }
+                                    },
+                                    {
+                                        "@type":"Review",
+                                        "reviewBody":"Una buena representación del daño que provoca la adiccion",
+                                        "reviewRating":{
+                                            "@type":"Rating",
+                                            "author":{
+                                                "@type": "Person",
+                                                "givenName": "Haiter"
+                                            },
+                                            "ratingValue":"4"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                },
+                {
+                    "@type":"MovieTheater",
+                    "name": "Teatre Principal de Inca",
+                    "identifier": "2",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality":"Inca",
+                        "addressRegion":"Mallorca",
+                        "postalCode":"07300"
+                        },
+                    "geo":{
+                        "@type":"GeoCoordinates",
+                        "latitude":"39.722730172927676",
+                        "longitude":"2.9092263818683883"
+                    },
+                    "telephone": "971963777",
+                    "image": {
+                        "@type":"ImageObject",
+                        "contentUrl":"assets/img/teatres/teatreprincipaldeinca.jpg"
+                    },
+                    "description": "Aquell antic i històricament estimat Teatro de Inca ha quedat rejovenit i posat al dia segons les noves maneres, formes i tecnologies actuals. Serà interessant fer una ullada cap enrere i conèixer el seu naixement. El Teatro de Inca s’inaugurà el dia 14 de novembre de l’any 1914, diada de la revetlla i completes de la festa de Santa Maria la Major i, també, pocs dies abans del Dijous Bo.",
+                    "url":"https://teatreprincipalinca.com/",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "hasAudio",
+                        "value": true,
+                        "url": "assets/aud/TeatrePrincipalInca.mp3"
+                    },
+                    "event":[
+                        {
+                            "@type":"Event",
+                            "name":"Los Perros",
+                            "identifier": "3",
+                            "startDate": "2024-05-24",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Led Silhouette"
+                            },
+                            "duration": "PT50M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Jon López",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JonLopez.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martxel Rodriguez",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartxelRodriguez.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/losperros.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/LosPerros.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 9
+                                }
+                            ],
+                            "description": "Los Perros proposa assolir un estat de resistència. com a gossos que passegen, gossos que es troben, que es reconeixen vulnerables, que comparteixen alegria, però també dolor, que cauen i s´aixequen, que ballen, que es rebel·len a través de l´amor, la generositat i el compromís, per trobar-hi trajecte comú el sentit de les pròpies vides, per superar junts la violència i el deteriorament. Plantegem una proposta que viatja des del tràngol de la repetició a la fascinació per la successió d´imatges. Imatges robades de l´ahir i llançades al matí, de l´ara i empastifades del passat, de la plàstica contemporània a la forma atàvica, terrenal, en una cruïlla constant de temps i de llenguatges. El desplegament d´una dansa passional que troba el sentit més pur en la repetició i en la catarsi: ballar fins a l´extenuació, bordar fins a l´abatiment, viure fins al defalliment. El relat de l´home que es contempla a l´altre per trobar-se a si mateix. Dos homes abraçats. Dos homes que ballen fins que tot s´acabi i tot torni a començar.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"No entiendo la obra, donde estan los perros?",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"1"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Ha sido una obra muy decente, uno puede dormir muy placidamente en el teatro.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Frieren"
+                                        },
+                                        "ratingValue":"3.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa y representa perfectamente la sociedad actual, la recomiendo completamente.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"La mala dicció",
+                            "identifier": "4",
+                            "startDate": "2024-08-18",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Xavier Albertí"
+                            },
+                            "duration": "PT70M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Paula Malia",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/Paula_Malia.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Jordi Oriol",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JordiOriol.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Carles Pedragosa",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/CarlesPedragosa.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/lamaladiccio.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/LaMalaDiccio.mp4"
+                                },{
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 12
+                                }
+                            ],
+                            "description": "La mala dicció completa la Trilogia del Lament, amb la qual Jordi Oriol reinterpreta tres tragèdies shakespearianes posant la pròpia paraula al centre de l´acció per poder reflexionar sobre les paradoxes que la llengua crea en els éssers humans. Si La caiguda d´Amlet (o La Caiguda de l´ac) (2007) pervertia “Hamlet” amb un sol personatge, i l´empestat (2015) pervertia “La Tempesta” amb dos personatges, aquesta darrera creació s´inspira amb “ Macbeth”, posant en escena tres personatges que traslladen, avui dia, no tant el tema de l´ambició per posseir el poder, sinó com actuem posseïts per aquest.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Que recuerdos!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Haiter"
+                                        },
+                                        "ratingValue":"4.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Pika pi pika pika pikacuuu!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Pikachu"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"No se me ocurren ideas",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Ghost"
+                                        },
+                                        "ratingValue":"3"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Els dies bons",
+                            "identifier": "5",
+                            "startDate": "2024-10-04",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Joan Fullana"
+                            },
+                            "duration": "PT80M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Caterina Alorda",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/CaterinaAlorda.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Àlvar Triay",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/AlvarTriay.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Lulú Cormican",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/LuluCormican.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Lluís Marquès",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/LluisMarques.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Neus Cortès",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/NeusCortes.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/elsdiesbons.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/ElsDiesBons.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 12
+                                }
+                            ],
+                            "description": "Els dies bons és la història d´una família travessada per les addiccions. Tot comença amb la intensa vida de Xavier, marcada per les drogues i les mentides, i continua amb la seva relació amb la Martina i la filla de tots dos, l´Ariadna, que es veuran sotmeses a les conseqüències tràgiques d´aquesta vida desmesurada, moltes vegades sense adonar-se´n . Com un fil imperceptible, lleuger i alhora implacable, la força dels fets els envolta en un destí que sembla repetir-se, inexorable. deslligades. Adaptació teatral de la novel·la homònima d´Aina Fullana Llull, Premi València Alfons al Magnànim de Narrativa 2021, entre d´altres distincions.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Que recuerdos!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Himmel"
+                                        },
+                                        "ratingValue":"4.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Una buena representación del daño que provoca la adiccion",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Haiter"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@type":"MovieTheater",
+                    "name": "Teatre Municipal Mar i Terra",
+                    "identifier": "3",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality":"Palma",
+                        "addressRegion":"Mallorca",
+                        "postalCode":"07013"
+                        },
+                    "geo":{
+                        "@type":"GeoCoordinates",
+                        "latitude":"39.57071514792466",
+                        "longitude":"2.634988110694715"
+                    },
+                    "telephone": "971452358",
+                    "image": {
+                        "@type":"ImageObject",
+                        "contentUrl":"assets/img/teatres/teatremunicipalmariterra.jpg"
+                    },
+                    "description": "El Teatre Mar i Terra, al barri de Santa Catalina, té el seu origen el 1898 quan es va fundar la Societat Mar i Terra i es va construir l’edifici projectat per Josep Segura. L’Ajuntament el va rehabilitar el 2010 i avui és un centre dedicat principalment a la formació en arts escèniques i a la promoció de les activitats de cultura popular.",
+                    "url":"https://www.palmacultura.cat/activitats-teatre-municipal-mar-i-terra",
+                    "additionalProperty": {
+                        "@type": "PropertyValue",
+                        "name": "hasAudio",
+                        "value": true,
+                        "url": "assets/aud/TeatreMarITerra.mp3"
+                    },
+                    "event":[
+                        {
+                            "@type":"Event",
+                            "name":"Los Perros",
+                            "identifier": "6",
+                            "startDate": "2024-10-04",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Led Silhouette"
+                            },
+                            "duration": "PT50M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Jon López",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JonLopez.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martxel Rodriguez",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartxelRodriguez.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/losperros.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/LosPerros.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 10
+                                }
+                            ],
+                            "description": "Los Perros proposa assolir un estat de resistència. com a gossos que passegen, gossos que es troben, que es reconeixen vulnerables, que comparteixen alegria, però també dolor, que cauen i s´aixequen, que ballen, que es rebel·len a través de l´amor, la generositat i el compromís, per trobar-hi trajecte comú el sentit de les pròpies vides, per superar junts la violència i el deteriorament. Plantegem una proposta que viatja des del tràngol de la repetició a la fascinació per la successió d´imatges. Imatges robades de l´ahir i llançades al matí, de l´ara i empastifades del passat, de la plàstica contemporània a la forma atàvica, terrenal, en una cruïlla constant de temps i de llenguatges. El desplegament d´una dansa passional que troba el sentit més pur en la repetició i en la catarsi: ballar fins a l´extenuació, bordar fins a l´abatiment, viure fins al defalliment. El relat de l´home que es contempla a l´altre per trobar-se a si mateix. Dos homes abraçats. Dos homes que ballen fins que tot s´acabi i tot torni a començar.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"No entiendo la obra, donde estan los perros?",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"1"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Ha sido una obra muy decente, uno puede dormir muy placidamente en el teatro.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Frieren"
+                                        },
+                                        "ratingValue":"3.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa y representa perfectamente la sociedad actual, la recomiendo completamente.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"La mala dicció",
+                            "identifier": "7",
+                            "startDate": "2024-05-04",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Xavier Albertí"
+                            },
+                            "duration": "PT70M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Paula Malia",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/Paula_Malia.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Jordi Oriol",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JordiOriol.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Carles Pedragosa",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/CarlesPedragosa.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/lamaladiccio.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/LaMalaDiccio.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 18
+                                }
+                            ],
+                            "description": "La mala dicció completa la Trilogia del Lament, amb la qual Jordi Oriol reinterpreta tres tragèdies shakespearianes posant la pròpia paraula al centre de l´acció per poder reflexionar sobre les paradoxes que la llengua crea en els éssers humans. Si La caiguda d´Amlet (o La Caiguda de l´ac) (2007) pervertia “Hamlet” amb un sol personatge, i l´empestat (2015) pervertia “La Tempesta” amb dos personatges, aquesta darrera creació s´inspira amb “ Macbeth”, posant en escena tres personatges que traslladen, avui dia, no tant el tema de l´ambició per posseir el poder, sinó com actuem posseïts per aquest.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Que recuerdos!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Haiter"
+                                        },
+                                        "ratingValue":"4.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Pika pi pika pika pikacuuu!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Pikachu"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"No se me ocurren ideas",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Ghost"
+                                        },
+                                        "ratingValue":"3"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Els dies bons",
+                            "identifier": "8",
+                            "startDate": "2024-07-22",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Joan Fullana"
+                            },
+                            "duration": "PT80M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Caterina Alorda",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/CaterinaAlorda.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Àlvar Triay",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/AlvarTriay.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Lulú Cormican",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/LuluCormican.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Lluís Marquès",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/LluisMarques.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Neus Cortès",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/NeusCortes.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/elsdiesbons.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/ElsDiesBons.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 12
+                                }
+                            ],
+                            "description": "Els dies bons és la història d´una família travessada per les addiccions. Tot comença amb la intensa vida de Xavier, marcada per les drogues i les mentides, i continua amb la seva relació amb la Martina i la filla de tots dos, l´Ariadna, que es veuran sotmeses a les conseqüències tràgiques d´aquesta vida desmesurada, moltes vegades sense adonar-se´n . Com un fil imperceptible, lleuger i alhora implacable, la força dels fets els envolta en un destí que sembla repetir-se, inexorable. deslligades. Adaptació teatral de la novel·la homònima d´Aina Fullana Llull, Premi València Alfons al Magnànim de Narrativa 2021, entre d´altres distincions.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Que recuerdos!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Himmel"
+                                        },
+                                        "ratingValue":"4.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Una buena representación del daño que provoca la adiccion",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Haiter"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@type":"MovieTheater",
+                    "name": "Teatre Pereyra",
+                    "identifier": "4",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality":"Eivissa",
+                        "addressRegion":"Eivissa",
+                        "postalCode":"07800"
+                        },
+                    "geo":{
+                        "@type":"GeoCoordinates",
+                        "latitude":"38.909784733955775",
+                        "longitude":"1.4346046465839801"
+                    },
+                    "telephone": "971397600",
+                    "image": {
+                        "@type":"ImageObject",
+                        "contentUrl":"assets/img/teatres/teatrepereyra.jpg"
+                    },
+                    "description": "El Teatre Pereira va ser impulsat pels cercles il·lustrats d´Eivissa i la seva construcció va concloure el 1899. Es tracta del primer edifici que es va erigir més enllà de la Marina, el barri del port. Amb el temps es va transformar en cinema, activitat que es va mantenir fins a finals dels anys vuitanta del segle XX. Fins fa uns anys hi havia un cafè on s´oferien concerts de jazz i música llatina.",
+                    "url":"",
+                    "additionalProperty":{
+                        "@type": "PropertyValue",
+                        "name": "hasAudio",
+                        "value": true,
+                        "url": ""
+                    },
+                    "event":[
+                        {
+                            "@type":"Event",
+                            "name":"Bulle À Bulle",
+                            "identifier": "9",
+                            "startDate": "2024-11-12",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Pep Bou"
+                            },
+                            "duration": "PT65M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Pep Bou",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/PepBou.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martín Cattani",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartinCattani.jpg"
+                                    }
+                                }
+                                
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/BulleABulle.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/BulleABulle.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 13
+                                }
+                            ],
+                            "description": "Bulle à bulle és una creació de l’artista Pep Bou, de renom mundial, que, juntament amb l’artista Martín Cattani, ens submergeix una vegada més en el seu fascinant món de les bombolles de sabó.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro muy buena. Recomendado!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa, la recomiendo",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Los Perros",
+                            "startDate": "2024-05-04",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Led Silhouette"
+                            },
+                            "duration": "PT50M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Jon López",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JonLopez.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martxel Rodriguez",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartxelRodriguez.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/losperros.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/LosPerros.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 10
+                                }
+                            ],
+                            "description": "Los Perros proposa assolir un estat de resistència. com a gossos que passegen, gossos que es troben, que es reconeixen vulnerables, que comparteixen alegria, però també dolor, que cauen i s´aixequen, que ballen, que es rebel·len a través de l´amor, la generositat i el compromís, per trobar-hi trajecte comú el sentit de les pròpies vides, per superar junts la violència i el deteriorament. Plantegem una proposta que viatja des del tràngol de la repetició a la fascinació per la successió d´imatges. Imatges robades de l´ahir i llançades al matí, de l´ara i empastifades del passat, de la plàstica contemporània a la forma atàvica, terrenal, en una cruïlla constant de temps i de llenguatges. El desplegament d´una dansa passional que troba el sentit més pur en la repetició i en la catarsi: ballar fins a l´extenuació, bordar fins a l´abatiment, viure fins al defalliment. El relat de l´home que es contempla a l´altre per trobar-se a si mateix. Dos homes abraçats. Dos homes que ballen fins que tot s´acabi i tot torni a començar.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"No entiendo la obra, donde estan los perros?",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"1"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Ha sido una obra muy decente, uno puede dormir muy placidamente en el teatro.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Frieren"
+                                        },
+                                        "ratingValue":"3.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa y representa perfectamente la sociedad actual, la recomiendo completamente.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"La mala dicció",
+                            "identifier": "11",
+                            "startDate": "2024-09-07",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Xavier Albertí"
+                            },
+                            "duration": "PT70M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Paula Malia",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/Paula_Malia.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Jordi Oriol",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JordiOriol.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Carles Pedragosa",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/CarlesPedragosa.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/lamaladiccio.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/LaMalaDiccio.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 15
+                                }
+                            ],
+                            "description": "La mala dicció completa la Trilogia del Lament, amb la qual Jordi Oriol reinterpreta tres tragèdies shakespearianes posant la pròpia paraula al centre de l´acció per poder reflexionar sobre les paradoxes que la llengua crea en els éssers humans. Si La caiguda d´Amlet (o La Caiguda de l´ac) (2007) pervertia “Hamlet” amb un sol personatge, i l´empestat (2015) pervertia “La Tempesta” amb dos personatges, aquesta darrera creació s´inspira amb “ Macbeth”, posant en escena tres personatges que traslladen, avui dia, no tant el tema de l´ambició per posseir el poder, sinó com actuem posseïts per aquest.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Que recuerdos!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Haiter"
+                                        },
+                                        "ratingValue":"4.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Pika pi pika pika pikacuuu!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Pikachu"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"No se me ocurren ideas",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Ghost"
+                                        },
+                                        "ratingValue":"3"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@type":"MovieTheater",
+                    "name": "Auditori Caló de s´Oli",
+                    "identifier": "5",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality":"San Antonio Abad",
+                        "addressRegion":"Eivissa",
+                        "postalCode":"07829"
+                        },
+                    "geo":{
+                        "@type":"GeoCoordinates",
+                        "latitude":"38.971651037366236",
+                        "longitude":"1.282004810659477"
+                    },
+                    "telephone": "971666147",
+                    "image": {
+                        "@type":"ImageObject",
+                        "contentUrl":"assets/img/teatres/auditoricalodesoli.jpg"
+                    },
+                    "description": "L’Auditori Caló de s’Oli es situa en primera línia de costa, a la zona de Cala de Bou, i constitueix una de les infraestructures més espectaculars d’Eivissa de totes les que es dediquen a les arts. Va ser inaugurat oficialment el 10 d’octubre de 2021, encara que el seu escenari exterior ja va albergar la primera edició del Festival Badia de Portmany l’estiu anterior.",
+                    "url":"",
+                    "additionalProperty":{
+                        "@type": "PropertyValue",
+                        "name": "hasAudio",
+                        "value": true,
+                        "url": ""
+                    },
+                    "event":[
+                        {
+                            "@type":"Event",
+                            "name":"Bulle À Bulle",
+                            "identifier": "12",
+                            "startDate": "2024-07-30",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Pep Bou"
+                            },
+                            "duration": "PT65M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Pep Bou",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/PepBou.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martín Cattani",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartinCattani.jpg"
+                                    }
+                                }
+                                
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/BulleABulle.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/BulleABulle.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 20
+                                }
+                            ],
+                            "description": "Bulle à bulle és una creació de l’artista Pep Bou, de renom mundial, que, juntament amb l’artista Martín Cattani, ens submergeix una vegada més en el seu fascinant món de les bombolles de sabó.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro muy buena. Recomendado!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa, la recomiendo",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Los Perros",
+                            "identifier": "13",
+                            "startDate": "2024-07-28",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Led Silhouette"
+                            },
+                            "duration": "PT50M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Jon López",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JonLopez.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martxel Rodriguez",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartxelRodriguez.jpg"
+                                    }
+                                }
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/losperros.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/LosPerros.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 9
+                                }
+                            ],
+                            "description": "Los Perros proposa assolir un estat de resistència. com a gossos que passegen, gossos que es troben, que es reconeixen vulnerables, que comparteixen alegria, però també dolor, que cauen i s´aixequen, que ballen, que es rebel·len a través de l´amor, la generositat i el compromís, per trobar-hi trajecte comú el sentit de les pròpies vides, per superar junts la violència i el deteriorament. Plantegem una proposta que viatja des del tràngol de la repetició a la fascinació per la successió d´imatges. Imatges robades de l´ahir i llançades al matí, de l´ara i empastifades del passat, de la plàstica contemporània a la forma atàvica, terrenal, en una cruïlla constant de temps i de llenguatges. El desplegament d´una dansa passional que troba el sentit més pur en la repetició i en la catarsi: ballar fins a l´extenuació, bordar fins a l´abatiment, viure fins al defalliment. El relat de l´home que es contempla a l´altre per trobar-se a si mateix. Dos homes abraçats. Dos homes que ballen fins que tot s´acabi i tot torni a començar.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"No entiendo la obra, donde estan los perros?",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"1"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Ha sido una obra muy decente, uno puede dormir muy placidamente en el teatro.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Frieren"
+                                        },
+                                        "ratingValue":"3.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa y representa perfectamente la sociedad actual, la recomiendo completamente.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@type":"MovieTheater",
+                    "name": "Teatre Des Born",
+                    "identifier": "6",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality":"Ciutadella",
+                        "addressRegion":"Menorca",
+                        "postalCode":"07760"
+                        },
+                    "geo":{
+                        "@type":"GeoCoordinates",
+                        "latitude":"40.00158678038585",
+                        "longitude":"3.83616205304961"
+                    },
+                    "telephone": "971484030",
+                    "image": {
+                        "@type":"ImageObject",
+                        "contentUrl":"assets/img/teatres/teatredesborn.jpg"
+                    },
+                    "description": "La història del Teatre des Born es remunta al 1873, quan es van iniciar les obres per iniciativa de Gaspar J. Saura, Antoni Sancho i Antoni Florit. El nou espai escènic va ser dissenyat i construït per Ramon Cavaller Gelabert i Manuel dels Ríos, i inaugurat dos anys després, el 1875.",
+                    "url":"https://www.teatredesborn.com/",
+                    "additionalProperty":{
+                        "@type": "PropertyValue",
+                        "name": "hasAudio",
+                        "value": true,
+                        "url": "assets/aud/TeatreDesBorn.mp3"
+                    },
+                    "event":[
+                        {
+                            "@type":"Event",
+                            "name":"Bulle À Bulle",
+                            "identifier": "14",
+                            "startDate": "2024-08-04",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Pep Bou"
+                            },
+                            "duration": "PT65M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Pep Bou",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/PepBou.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martín Cattani",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartinCattani.jpg"
+                                    }
+                                }
+                                
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/BulleABulle.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/BulleABulle.mp4"
+                                },{
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 16
+                                }
+                            ],
+                            "description": "Bulle à bulle és una creació de l’artista Pep Bou, de renom mundial, que, juntament amb l’artista Martín Cattani, ens submergeix una vegada més en el seu fascinant món de les bombolles de sabó.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro muy buena. Recomendado!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa, la recomiendo",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Camí a l´Éscola",
+                            "identifier": "15",
+                            "startDate": "2024-04-04",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Rosa Díaz"
+                            },
+                            "duration": "PT55M",
+                            "actor":[
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/CamiEscola.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/CamiEscola.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 16
+                                }
+                            ],
+                            "description": "Tres germanes, un camí i un objectiu: tenir el futur a les seves mans. L’extraordinària història de tres noies que s’enfronten a una série d’obstacles i perills diàriament per arribar a l’escola.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro muy buena. Recomendado!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa, la recomiendo",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Gospel Experience 4.0",
+                            "identifier": "16",
+                            "startDate": "2024-09-15",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Joseph Bernard Clarke"
+                            },
+                            "duration": "PT65M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Joseph Bernard Clarke",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JosephBernard.jpg"
+                                    }
+                                }
+                                
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/JosephBernard.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": false,
+                                    "url": ""
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 9
+                                }
+                            ],
+                            "description": "La formació menorquina presenta una nova edició del seu espectacle musical, Gospel Experience 4.0, amb un nou artista convidat i el clar objectiu d’oferir al públic una experiència única per gaudir de la música gòspel. ",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"De las mejores obras que veras ;).",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Joseph Bernard Clarke"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Esto es lo que se lleva hoy en dia?",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Serie"
+                                        },
+                                        "ratingValue":"1.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"La obra estaba bien, pero el teatro no esta adaptado para enanos.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Eisen"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@type":"MovieTheater",
+                    "name": "Teatre Principal de Maó",
+                    "identifier": "7",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality":"Maó",
+                        "addressRegion":"Menorca",
+                        "postalCode":"07702"
+                        },
+                    "geo":{
+                        "@type":"GeoCoordinates",
+                        "latitude":"39.88847540757069",
+                        "longitude":"4.263299960993235"
+                    },
+                    "telephone": "971355603",
+                    "image": {
+                        "@type":"ImageObject",
+                        "contentUrl":"assets/img/teatres/teatreprincipaldemao.jpg"
+                    },
+                    "description": "El Teatre Principal de Maó és el teatre més antic d´òpera d´Espanya. De propietat municipal, va ser construït l´any 1829 per l´arquitecte italià Giovanni Palagi, aprofitant les restes de la muralla que envoltava la ciutat de Maó.",
+                    "url":"https://teatremao.com/",
+                    "additionalProperty":{
+                        "@type": "PropertyValue",
+                        "name": "hasAudio",
+                        "value": true,
+                        "url": "assets/aud/TeatrePrincipalMao.mp3"
+                    },
+                    "event":[
+                        {
+                            "@type":"Event",
+                            "name":"Bulle À Bulle",
+                            "identifier": "17",
+                            "startDate": "2024-12-08",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Pep Bou"
+                            },
+                            "duration": "PT65M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Pep Bou",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/PepBou.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martín Cattani",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartinCattani.jpg"
+                                    }
+                                }
+                                
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/BulleABulle.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/BulleABulle.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 13
+                                }
+                            ],
+                            "description": "Bulle à bulle és una creació de l’artista Pep Bou, de renom mundial, que, juntament amb l’artista Martín Cattani, ens submergeix una vegada més en el seu fascinant món de les bombolles de sabó.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro muy buena. Recomendado!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa, la recomiendo",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Camí a l´Éscola",
+                            "identifier": "18",
+                            "startDate": "2024-11-10",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Rosa Díaz"
+                            },
+                            "duration": "PT55M",
+                            "actor":[
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/CamiEscola.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/CamiEscola.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 14
+                                }
+                            ],
+                            "description": "Tres germanes, un camí i un objectiu: tenir el futur a les seves mans. L’extraordinària història de tres noies que s’enfronten a una série d’obstacles i perills diàriament per arribar a l’escola.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro muy buena. Recomendado!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa, la recomiendo",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Gospel Experience 4.0",
+                            "identifier": "19",
+                            "startDate": "2024-08-05",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Joseph Bernard Clarke"
+                            },
+                            "duration": "PT90M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Joseph Bernard Clarke",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JosephBernard.jpg"
+                                    }
+                                }
+                                
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/JosephBernard.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": false,
+                                    "url": ""
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 13
+                                }
+                            ],
+                            "description": "La formació menorquina presenta una nova edició del seu espectacle musical, Gospel Experience 4.0, amb un nou artista convidat i el clar objectiu d’oferir al públic una experiència única per gaudir de la música gòspel. ",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"De las mejores obras que veras .).",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Joseph Bernard Clarke"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Esto es lo que se lleva hoy en dia?",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Serie"
+                                        },
+                                        "ratingValue":"1.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"La obra estaba bien, pero el teatro no esta adaptado para enanos.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Eisen"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "@type":"MovieTheater",
+                    "name": "Sala Polivalent Albert Camus",
+                    "identifier": "8",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality":"Sant Lluís",
+                        "addressRegion":"Menorca",
+                        "postalCode":"07710"
+                        },
+                    "geo":{
+                        "@type":"GeoCoordinates",
+                        "latitude":"39.851800824501",
+                        "longitude":"4.258308218533008"
+                    },
+                    "telephone": "971150950",
+                    "image": {
+                        "@type":"ImageObject",
+                        "contentUrl":"assets/img/teatres/salapolivalentalbertcamus.jpg"
+                    },
+                    "description": "És un immoble amb les característiques d´una arquitectura contemporània, tant a l´interior com a l´exterior, que respecta els trets més significatius de la fesomia del nucli urbà de Sant Lluís, i que manté la volumetria necessària per a un teatre però integrada amb discreció.",
+                    "url":"https://salaalbertcamus.org/",
+                    "additionalProperty":{
+                        "@type": "PropertyValue",
+                        "name": "hasAudio",
+                        "value": true,
+                        "url": "assets/aud/SalaAlbertCamus.mp3"
+                    },
+                    "event":[
+                        {
+                            "@type":"Event",
+                            "name":"Bulle À Bulle",
+                            "identifier": "20",
+                            "startDate": "2024-04-04",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Pep Bou"
+                            },
+                            "duration": "PT65M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Pep Bou",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/PepBou.jpg"
+                                    }
+                                },
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Martín Cattani",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/MartinCattani.jpg"
+                                    }
+                                }
+                                
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/BulleABulle.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/BulleABulle.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 9
+                                }
+                            ],
+                            "description": "Bulle à bulle és una creació de l’artista Pep Bou, de renom mundial, que, juntament amb l’artista Martín Cattani, ens submergeix una vegada més en el seu fascinant món de les bombolles de sabó.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro muy buena. Recomendado!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa, la recomiendo",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Camí a l´Éscola",
+                            "identifier": "21",
+                            "startDate": "2024-07-24",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Rosa Díaz"
+                            },
+                            "duration": "PT55M",
+                            "actor":[
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/CamiEscola.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": true,
+                                    "url": "assets/vid/CamiEscola.mp4"
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 15
+                                }
+                            ],
+                            "description": "Tres germanes, un camí i un objectiu: tenir el futur a les seves mans. L’extraordinària història de tres noies que s’enfronten a una série d’obstacles i perills diàriament per arribar a l’escola.",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro muy buena. Recomendado!!!",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Stark"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro decente, para pasar el rato el esta bien",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Jephy Damer"
+                                        },
+                                        "ratingValue":"2.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Es una obra de teatro bastante ilustrativa, la recomiendo",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Fern"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "@type":"Event",
+                            "name":"Gospel Experience 4.0",
+                            "identifier": "22",
+                            "startDate": "2024-06-14",
+                            "director":{
+                                "@type":"Person",
+                                "givenName": "Joseph Bernard Clarke"
+                            },
+                            "duration": "PT90M",
+                            "actor":[
+                                {
+                                    "@type": "Person",
+                                    "givenName": "Joseph Bernard Clarke",
+                                    "image":{
+                                        "@type":"ImageObject",
+                                        "contentUrl":"assets/img/actors/JosephBernard.jpg"
+                                    }
+                                }
+                                
+                            ],
+                            "image":{
+                                "@type":"ImageObject",
+                                "contentUrl":"assets/img/obres/JosephBernard.jpg"
+                            },
+                            "additionalProperty":[
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "hasVideo",
+                                    "value": false,
+                                    "url": ""
+                                },
+                                {
+                                    "@type": "PropertyValue",
+                                    "name": "price",
+                                    "value": 15
+                                }
+                            ],
+                            "description": "La formació menorquina presenta una nova edició del seu espectacle musical, Gospel Experience 4.0, amb un nou artista convidat i el clar objectiu d’oferir al públic una experiència única per gaudir de la música gòspel. ",
+                            "review":[
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"De las mejores obras que veras .).",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Joseph Bernard Clarke"
+                                        },
+                                        "ratingValue":"5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"Esto es lo que se lleva hoy en dia?",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Serie"
+                                        },
+                                        "ratingValue":"1.5"
+                                    }
+                                },
+                                {
+                                    "@type":"Review",
+                                    "reviewBody":"La obra estaba bien, pero el teatro no esta adaptado para enanos.",
+                                    "reviewRating":{
+                                        "@type":"Rating",
+                                        "author":{
+                                            "@type": "Person",
+                                            "givenName": "Eisen"
+                                        },
+                                        "ratingValue":"4"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }	
+            
+    </script>
+</body>
+
+</html>
