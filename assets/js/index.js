@@ -239,7 +239,7 @@ function generaHTMLNosaltres(){
           
                 <div class="col-lg-7">  <div class="position-relative mt-4">
                         <img src="assets/img/about-2.jpg" class="img-fluid img-indexContador-medidas" alt="">
-                        <a href="assets/vid/DescobreixTeatre.mp4" class="glightbox play-btn" aria-label="Nuestra presentacion"></a>
+                        <a href="https://www.youtube.com/watch?v=p9xakZwJWEM&t" class="glightbox play-btn" aria-label="Nuestra presentacion"></a>
                   </div>
                 </div>
               </div>

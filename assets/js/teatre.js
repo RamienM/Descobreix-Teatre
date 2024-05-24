@@ -314,7 +314,7 @@ function generaHTMLWeatherTeatro(weather){
     <h3>Temps actual a ${weather.location.name}</h3>
     <div>
         <img src="${weather.current.condition.icon}">
-        <p>${weather.current.condition.text} ${weather.current.temp_c}</p>
+        <p>${weather.current.condition.text} ${weather.current.temp_c}ºC</p>
     </div>
     `;
     return wheaterTeatro;
