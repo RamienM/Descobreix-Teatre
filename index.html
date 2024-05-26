@@ -5,12 +5,13 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-43Q7MJPKMQ"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-    gtag('config', 'G-43Q7MJPKMQ');
+        gtag('config', 'G-43Q7MJPKMQ');
     </script>
+    
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="description" content="Pagina realizada como proposito educativo, la siguiente página web no trata de proporcionar información veridica. Autores: Rubén Ramis, Sílvia Moià y Arnau Vidal">
@@ -43,254 +44,7 @@
     <!--  Leaflet -->
     <link rel="stylesheet" href="lib/leaflet/leaflet.css" />
     <link rel="stylesheet" href="lib/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
-
-
-    <!-- =======================================================
-  * Template Name: Yummy
-  * Updated: Jan 30 2024 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center">
-        <div id="nose" class="container d-flex align-items-center justify-content-between">
-
-            <button onclick="reloadIndex()" class="logo d-flex align-items-center me-auto me-lg-0">
-                <h1>Teatre<span>.</span></h1>
-            </button>
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a href="#hero">Inici</a></li>
-                    <li><a href="#menu">Teatres</a></li>
-                    <li><a href="#events">Obres</a></li>
-                    <li><a href="#mapa">Mapa events</a></li>
-                    <li><a href="#about">Sobre nosaltres</a></li>
-                </ul>
-            </nav><!-- .navbar -->
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-
-        </div>
-    </header><!-- End Header -->
-
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="hero d-flex align-items-center section-bg">
-        <div class="container" id="info">
-            <div class="row justify-content-between gy-5">
-                <div
-                    class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
-                    <h2  id="Name">Descobreix<br>Teatre!</h2>
-                    <p  id="Description">Totes les obres teatrals de Balears les tens només a un click. Entra i descobreix-ho!</p>
-                </div>
-                <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
-                    <img src="assets/img/svg/hero-img.svg" class="img-fluid img-indexHero-medidas" alt="" id="ImageMain">
-                </div>
-            </div>
-        </div>
-    </section><!-- End Hero Section -->
-
-    <main id="main">
-    <!-- ======= Menu Section ======= -->
-        <section id="menu" class="menu">
-            <div class="container">
-
-                <div class="section-header">
-                    <p>Consulta qualsevol <span>Teatre </span>del teu entorn</p>
-                </div>
-
-                <label for="filtraPer" class="visually-hidden">Filtra per</label>
-                    <select class="form-select" id="filtraPer" style="border-radius: 4px;">
-                      <option vlue="Totes les illes" selected>Totes les illes</option>
-                      <option value="Mallorca">Mallorca</option>
-                      <option value="Menorca">Menorca</option>
-                      <option value="Eivissa">Eivissa</option>
-                </select>
-                 
-                <div class="tab-content" id="teatres">
-                </div>
-
-            </div>
-        </section><!-- End Menu Section -->
-
-        <!-- ======= Events Section ======= -->
-        <section id="events" class="events section-bg">
-            <div class="container-fluid">
-
-                <div class="section-header">
-                    <h2>Obres</h2>
-                    <p>Obres <span>aquest mes</span> a les Balears</p>
-                </div>
-
-                <div id="desplazamiento">
-                </div>
-
-            </div>
-        </section><!-- End Events Section -->
-
-
-        <!-- ======= Contact Section ======= -->
-        <section id="mapa">
-            <div class="container">
-
-                <div class="section-header">
-                    <h2>Mapa</h2>
-                    <p>Descobreix <span>Events</span></p>
-                </div>
-                <div class="mapa-contenedor">
-                    <div id="map" class="mapa-align"></div> <!-- Contenedor del mapa -->
-                    <div class="mapa-element">
-                        <div class="mapa-filter">
-                            <p>Seleccioni quin event vol visualizar:</p>
-                            <label for="filtraMapa" class="visually-hidden">Filtra per</label>
-                                <select class="form-select" id="filtraMapa" style="border-radius: 4px;">
-                                <option vlue="Teatres" selected>Teatres</option>
-                                <option value="Fires">Fires</option>
-                                <option value="Festes">Festes</option>
-                            </select>
-                        </div>
-                        <div>
-                            <p>Vols visualizar la teva posició?</p>
-                            <button id="mapa-button" class="mapa-button" onclick="geoPosicion()">Ubicam</button>
-                        </div>   
-                    </div>
-                </div>
-            </div>
-        </section><!-- End Contact Section -->
-
-        <!-- ======= About Section ======= -->
-        <section id="about" class="about section-bg">
-            <div class="container">
-          
-              <div class="section-header">
-                <h2>Sobre nosaltres</h2>
-                <p>Qui som <span>?</span></p>
-              </div>
-          
-              <div class="row d-flex">  <div class="col-lg-5 content ps-0 ps-lg-5">  <p class="fst-italic">
-                    Som un grup que està cursant l'assignatura de Multimèdia del grau d'Enginyeria Informàtica Universitat de les Illes Balears.
-                  </p>
-                  <ul>
-                    <li><i class="bi bi-check2-all"></i> Rubén Ramis</li>
-                    <li><i class="bi bi-check2-all"></i> Arnau Vidal</li>
-                    <li><i class="bi bi-check2-all"></i> Sílvia Moià</li>
-                  </ul>
-                </div>
-          
-                <div class="col-lg-7"> 
-                     <div class="position-relative mt-4">
-                        <img src="assets/img/about-2.jpg" class="img-fluid img-indexContador-medidas" alt="">
-                        <a href="https://www.youtube.com/watch?v=p9xakZwJWEM&t" class="glightbox play-btn" aria-label="Nuestra presentacion"></a>
-                    </div>
-                </div>
-              </div>
-            </div>
-          </section>
-          <!-- End About Section -->
-
-                <!-- ======= Stats Counter Section ======= -->
-                <section id="stats-counter" class="stats-counter">
-                    <div class="container">
-        
-                        <div id="cont" class="row gy-4">
-                        </div>
-        
-                    </div>
-                </section><!-- End Stats Counter Section -->
-
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-
-        <div class="container">
-            <div class="row gy-3">
-                <div class="col-lg-3 col-md-6 footer-links d-flex">
-                    <i class="bi bi-telephone icon"></i>
-                    <div>
-                        <p class="cont-index">Contacte</p>
-                        <p>
-                            <strong>Telèfon:</strong> +34 622 22 22 22<br>
-                            <strong>Correu:</strong> info@descobreixteatre.com<br>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-links d-flex">
-                    <i class="bi bi-clock icon"></i>
-                    <div>
-                        <p class="cont-index">Disponibilitat horària</p>
-                        <p>
-                            <strong>Dill-Div: 11AM</strong> - 14PM<br>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 footer-links d-flex">
-                    <i class="bi bi-patch-exclamation-fill icon"></i>
-                    <div>
-                        <p class="cont-index">Advertència</p>
-                        <p>
-                            <strong>Aquesta pàgina web no ofereix informació encertada, si us plau no fer servir la informació com a referència</strong>
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 footer-links d-flex">
-                    <i class="bi bi-cloud-moon-fill icon"></i>
-                    <div>
-                        <p class="cont-index">Propòsit</p>
-                        <p>
-                            Pàgina web desenvolupada com a pràctica per a la asignatura 21755-Tecnologia Multimedia d'Enginyeria Informàtica de la Universitat de les Illes Balears
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-        </div>
-
-    </footer><!-- End Footer -->
-    <!-- End Footer -->
-
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/teatre.js"></script>
-    <script src="assets/js/obres.js"></script>
-    <script src="lib/leaflet/leaflet.js"></script>
-    <script async src="lib/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
-    <script src="assets/js/mapa.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('assets/js/service-worker.js')
-                .then(function(registration) {
-                    console.log('Service Worker registrado con éxito con alcance:',registration.scope);
-                })
-                .catch(function(error) {
-                    console.log('Registro de Service Worker fallido:', error);
-                });
-        }
-        </script>
-    <script type="application/ld+json">
+        <script type="application/ld+json">
         {
             "@context":"http://schema.org",
             "@type":"itemList",
@@ -2655,6 +2409,252 @@
         }	
             
     </script>
+
+    <!-- =======================================================
+  * Template Name: Yummy
+  * Updated: Jan 30 2024 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div id="nose" class="container d-flex align-items-center justify-content-between">
+
+            <button onclick="reloadIndex()" class="logo d-flex align-items-center me-auto me-lg-0">
+                <h1>Teatre<span>.</span></h1>
+            </button>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="#hero">Inici</a></li>
+                    <li><a href="#menu">Teatres</a></li>
+                    <li><a href="#events">Obres</a></li>
+                    <li><a href="#mapa">Mapa events</a></li>
+                    <li><a href="#about">Sobre nosaltres</a></li>
+                </ul>
+            </nav><!-- .navbar -->
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+        </div>
+    </header><!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="hero d-flex align-items-center section-bg">
+        <div class="container" id="info">
+            <div class="row justify-content-between gy-5">
+                <div
+                    class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+                    <h2  id="Name">Descobreix<br>Teatre!</h2>
+                    <p  id="Description">Totes les obres teatrals de Balears les tens només a un click. Entra i descobreix-ho!</p>
+                </div>
+                <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+                    <img src="assets/img/svg/hero-img.svg" class="img-fluid img-indexHero-medidas" alt="" id="ImageMain">
+                </div>
+            </div>
+        </div>
+    </section><!-- End Hero Section -->
+
+    <main id="main">
+    <!-- ======= Menu Section ======= -->
+        <section id="menu" class="menu">
+            <div class="container">
+
+                <div class="section-header">
+                    <p>Consulta qualsevol <span>Teatre </span>del teu entorn</p>
+                </div>
+
+                <label for="filtraPer" class="visually-hidden">Filtra per</label>
+                    <select class="form-select" id="filtraPer" style="border-radius: 4px;">
+                      <option vlue="Totes les illes" selected>Totes les illes</option>
+                      <option value="Mallorca">Mallorca</option>
+                      <option value="Menorca">Menorca</option>
+                      <option value="Eivissa">Eivissa</option>
+                </select>
+                 
+                <div class="tab-content" id="teatres">
+                </div>
+
+            </div>
+        </section><!-- End Menu Section -->
+
+        <!-- ======= Events Section ======= -->
+        <section id="events" class="events section-bg">
+            <div class="container-fluid">
+
+                <div class="section-header">
+                    <h2>Obres</h2>
+                    <p>Obres <span>aquest mes</span> a les Balears</p>
+                </div>
+
+                <div id="desplazamiento">
+                </div>
+
+            </div>
+        </section><!-- End Events Section -->
+
+
+        <!-- ======= Contact Section ======= -->
+        <section id="mapa">
+            <div class="container">
+
+                <div class="section-header">
+                    <h2>Mapa</h2>
+                    <p>Descobreix <span>Events</span></p>
+                </div>
+                <div class="mapa-contenedor">
+                    <div id="map" class="mapa-align"></div> <!-- Contenedor del mapa -->
+                    <div class="mapa-element">
+                        <div class="mapa-filter">
+                            <p>Seleccioni quin event vol visualizar:</p>
+                            <label for="filtraMapa" class="visually-hidden">Filtra per</label>
+                                <select class="form-select" id="filtraMapa" style="border-radius: 4px;">
+                                <option vlue="Teatres" selected>Teatres</option>
+                                <option value="Fires">Fires</option>
+                                <option value="Festes">Festes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p>Vols visualizar la teva posició?</p>
+                            <button id="mapa-button" class="mapa-button" onclick="geoPosicion()">Ubicam</button>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Contact Section -->
+
+        <!-- ======= About Section ======= -->
+        <section id="about" class="about section-bg">
+            <div class="container">
+          
+              <div class="section-header">
+                <h2>Sobre nosaltres</h2>
+                <p>Qui som <span>?</span></p>
+              </div>
+          
+              <div class="row d-flex">  <div class="col-lg-5 content ps-0 ps-lg-5">  <p class="fst-italic">
+                    Som un grup que està cursant l'assignatura de Multimèdia del grau d'Enginyeria Informàtica Universitat de les Illes Balears.
+                  </p>
+                  <ul>
+                    <li><i class="bi bi-check2-all"></i> Rubén Ramis</li>
+                    <li><i class="bi bi-check2-all"></i> Arnau Vidal</li>
+                    <li><i class="bi bi-check2-all"></i> Sílvia Moià</li>
+                  </ul>
+                </div>
+          
+                <div class="col-lg-7"> 
+                     <div class="position-relative mt-4">
+                        <img src="assets/img/about-2.jpg" class="img-fluid img-indexContador-medidas" alt="">
+                        <a href="https://www.youtube.com/watch?v=p9xakZwJWEM&t" class="glightbox play-btn" aria-label="Nuestra presentacion"></a>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- End About Section -->
+
+                <!-- ======= Stats Counter Section ======= -->
+                <section id="stats-counter" class="stats-counter">
+                    <div class="container">
+        
+                        <div id="cont" class="row gy-4">
+                        </div>
+        
+                    </div>
+                </section><!-- End Stats Counter Section -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+        <div class="container">
+            <div class="row gy-3">
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-telephone icon"></i>
+                    <div>
+                        <p class="cont-index">Contacte</p>
+                        <p>
+                            <strong>Telèfon:</strong> +34 622 22 22 22<br>
+                            <strong>Correu:</strong> info@descobreixteatre.com<br>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-clock icon"></i>
+                    <div>
+                        <p class="cont-index">Disponibilitat horària</p>
+                        <p>
+                            <strong>Dill-Div: 11AM</strong> - 14PM<br>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-patch-exclamation-fill icon"></i>
+                    <div>
+                        <p class="cont-index">Advertència</p>
+                        <p>
+                            <strong>Aquesta pàgina web no ofereix informació encertada, si us plau no fer servir la informació com a referència</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-links d-flex">
+                    <i class="bi bi-cloud-moon-fill icon"></i>
+                    <div>
+                        <p class="cont-index">Propòsit</p>
+                        <p>
+                            Pàgina web desenvolupada com a pràctica per a la asignatura 21755-Tecnologia Multimedia d'Enginyeria Informàtica de la Universitat de les Illes Balears
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+
+    </footer><!-- End Footer -->
+    <!-- End Footer -->
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/teatre.js"></script>
+    <script src="assets/js/obres.js"></script>
+    <script src="lib/leaflet/leaflet.js"></script>
+    <script async src="lib/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="assets/js/mapa.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('assets/js/service-worker.js')
+                .then(function(registration) {
+                    console.log('Service Worker registrado con éxito con alcance:',registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Registro de Service Worker fallido:', error);
+                });
+        }
+        </script>
 </body>
 
 </html>
