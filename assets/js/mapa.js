@@ -124,7 +124,7 @@ function mostraMapa(){
                 iconSize:     [25, 25], // size of the icon
             });
               for (const fiesta of fiestas) {
-                  let m = L.marker([fiesta.geo.latitude, fiesta.geo.longitude], {icon: blueIcon}).addTo(map);
+                  let m = L.marker([fiesta.location.geo.latitude, fiesta.location.geo.longitude], {icon: blueIcon}).addTo(map);
                   m.bindPopup(fiesta.name);
                   marker.push(m);
               }
