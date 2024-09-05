@@ -2625,9 +2625,22 @@
 
     </footer><!-- End Footer -->
     <!-- End Footer -->
+    <div class="chat-bubble" id="chat-bubble">💬</div>
+
+    <!-- Ventana de chat -->
+    <div class="chat-window" id="chat-window">
+        <div class="chat-header">Asistente Virtual</div>
+        <div class="chat-body" id="chat-body">
+            <!-- Aquí se mostrarán los mensajes -->
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="Escribe tu mensaje..." onkeypress="handleKeyPress(event)"/>
+        </div>
+    </div>
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
+
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
@@ -2638,6 +2651,7 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script async src="assets/js/asistente.js"></script>
     <script src="assets/js/teatre.js"></script>
     <script src="assets/js/obres.js"></script>
     <script src="lib/leaflet/leaflet.js"></script>

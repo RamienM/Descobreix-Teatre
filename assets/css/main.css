@@ -164,7 +164,7 @@ section {
   visibility: hidden;
   opacity: 0;
   right: 15px;
-  bottom: 15px;
+  bottom: 20px;
   z-index: 99999;
   background: var(--color-primary);
   width: 44px;
@@ -1513,4 +1513,107 @@ button {
 
 .review-form input[type="radio"]:checked ~ label {
   color: orange;
+}
+
+/* Asistente Virtual */
+.chat-bubble {
+  position: fixed;
+  opacity:  1;
+  right: 15px;
+  bottom: 75px;
+  z-index: 99999;
+  background: #007bff;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Ventana de chat oculta por defecto */
+.chat-window {
+  display: none;
+  position: fixed;
+  opacity: 1;
+  z-index: 99999;
+  bottom: 125px;
+  right: 20px;
+  width: 375px;
+  height: 450px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+}
+
+/* Encabezado del chat */
+.chat-header {
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Área de mensajes */
+.chat-body {
+  padding: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+/* Campo de texto del chat */
+.chat-footer {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.chat-footer input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 600px) {
+  .chat-bubble {
+    right: 10px;
+    bottom: 65px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+  }
+
+  .chat-window {
+    width: 90%;
+    height: 350px;
+    right: 5%;
+    bottom: 80px;
+  }
+
+  .chat-header {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .chat-body {
+    padding: 8px;
+  }
+
+  .chat-footer input {
+    padding: 8px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .chat-window {
+    width: 80%;
+    height: 400px;
+    right: 10%;
+  }
 }
