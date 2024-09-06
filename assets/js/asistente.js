@@ -1,7 +1,8 @@
 const chatBubble = document.getElementById("chat-bubble");
 const chatWindow = document.getElementById("chat-window");
 
-
+const apiKey = "OPEN AI key";
+const assistant = "Assistant id";
 let active = false;
 let thread;
 
@@ -27,7 +28,8 @@ async function handleKeyPress(event) {
             input.value = "";
 
             const idMensaje = await mandarMesaje(message);
-            const response = await obtenerMensaje(idMensaje);
+            const idRun = await ejecutarMensaje();
+            const response = await obtenerMensaje(idMensaje, idRun);
 
             if (response != null) {
                 chatBody.innerHTML += `<p><strong>Asistente:</strong> ${response}</p>`;
@@ -63,7 +65,7 @@ async function initAssistant() {
 
 async function mandarMesaje(mensaje) {
     try {
-        let response = await fetch(`https://api.openai.com/v1/threads/${thread}/messages`, {
+        const response = await fetch(`https://api.openai.com/v1/threads/${thread}/messages`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -77,9 +79,15 @@ async function mandarMesaje(mensaje) {
         });
 
         const data = await response.json();
-        const idMensaje = data.id
+        return data.id
+    } catch (error) {
+        console.error(error);
+    }
+}
 
-        response = await fetch(`https://api.openai.com/v1/threads/${thread}/runs`, {
+async function ejecutarMensaje() {
+    try {
+        const response = await fetch(`https://api.openai.com/v1/threads/${thread}/runs`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -89,7 +97,9 @@ async function mandarMesaje(mensaje) {
             body: JSON.stringify({assistant_id : assistant})
         });
 
-        return idMensaje;
+        const data = await response.json();
+
+        return data.id;
 
     } catch (error) {
         console.error(error);
@@ -97,37 +107,98 @@ async function mandarMesaje(mensaje) {
 }
 
 
-async function obtenerMensaje(idMensaje){
+async function obtenerMensaje(idMensaje, idRun){
     let finished = false;
-    let mensaje;
 
     while(!finished){
-        setTimeout(2000)
-        try {
-            const response = await fetch(`https://api.openai.com/v1/threads/${thread}/messages`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${apiKey}`,
-                    'OpenAI-Beta': `assistants=v2`
-                }
-            });
-    
-            const info = await response.json();
+        finished = await consultMessageStatus(idRun);
+        setTimeout(5000)
+    }
 
-            console.log(info);
-            
-
-            if(info.first_id != idMensaje && info.last_id != null){
-                if(info.data[0].content.length > 0){
-                    finished = true;        
-                    mensaje = info.data[0].content[0].text.value;
-                }
-
+    try {
+        const response = await fetch(`https://api.openai.com/v1/threads/${thread}/messages`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'OpenAI-Beta': `assistants=v2`
             }
-    
-        } catch (error) {
-            console.error(error);
+        });
+
+        const info = await response.json();
+
+        console.log(info);
+        
+
+        if(info.first_id != idMensaje && info.last_id != null){
+            if(info.data[0].content.length > 0){      
+                return info.data[0].content[0].text.value;
+            }
+
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function consultMessageStatus(idRun) {
+    try {
+        const response = await fetch(`https://api.openai.com/v1/threads/${thread}/runs/${idRun}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'OpenAI-Beta': `assistants=v2`
+            }
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+
+        if(data.status == "completed"){
+            return true;
+        }else if(data.status == "requires_action"){
+            await requiredAction(data, idRun);
+        }
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+async function requiredAction(data, idRun) {
+    let tools_output = []
+    const tools = data.required_action.submit_tool_outputs.tool_calls;
+    for(const tool of tools){
+        if(tool.function.name == "get_weather_theater"){
+            const datos = JSON.parse(tool.function.arguments);
+
+            let weather = await getWeather(datos.latitude, datos.longitude);
+            tools_output.push({
+                "tool_call_id" : tool.id,
+                "output" : weather.current.condition.text
+            });
         }
     }
-    return mensaje;
+    await sendRequiredAction(tools_output,idRun)
+}
+
+async function sendRequiredAction(tools_output, runId) {
+    console.log(JSON.stringify(tools_output));
+    
+    try {
+        const response = await fetch(`https://api.openai.com/v1/threads/${thread}/runs/${runId}/submit_tool_outputs`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`,
+                'OpenAI-Beta': `assistants=v2`
+            },
+            body: JSON.stringify({tool_outputs : tools_output})
+            
+        });
+    } catch (error) {
+        console.error(error);
+    }
 }
