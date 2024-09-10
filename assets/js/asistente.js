@@ -1,15 +1,15 @@
 const chatBubble = document.getElementById("chat-bubble");
 const chatWindow = document.getElementById("chat-window");
 
-const apiKey = "OPEN AI key";
-const assistant = "Assistant id";
+const apiKey = "Assistant API Key";
+const assistant = "Assistant ID";
 let active = false;
 let thread;
 
-chatBubble.addEventListener("click", function() {
+chatBubble.addEventListener("click", async function() {
     chatWindow.style.display = chatWindow.style.display === "none" || chatWindow.style.display === "" ? "flex" : "none";
     if(!active){
-        initAssistant();
+        thread = await initThread();
     }
 });
 
@@ -18,8 +18,10 @@ async function handleKeyPress(event) {
     if (event.key === "Enter") {
         const input = document.getElementById("userInput");
         const message = input.value.trim();
+        input.disabled = true;
         
         if (message !== "") {
+            input.placeholder = "Procesando..."
             // Agregar el mensaje del usuario a la ventana de chat
             const chatBody = document.getElementById("chat-body");
             chatBody.innerHTML += `<p><strong>Tú:</strong> ${message}</p>`;
@@ -28,7 +30,7 @@ async function handleKeyPress(event) {
             input.value = "";
 
             const idMensaje = await mandarMesaje(message);
-            const idRun = await ejecutarMensaje();
+            const idRun = await ejecutarAssistant();
             const response = await obtenerMensaje(idMensaje, idRun);
 
             if (response != null) {
@@ -40,10 +42,17 @@ async function handleKeyPress(event) {
             // Scroll al final del chat
             chatBody.scrollTop = chatBody.scrollHeight;
         }
+        input.disabled = false;
+        input.placeholder = "Escribe tu mensaje...";
     }
 }
 
-async function initAssistant() {
+/**
+ * Iniciamos el contedenor donde se iran almacenando los mensajes 
+ * para su posterior procesado.
+ * @returns Devuelve el id del contenedor
+ */
+async function initThread() {
     try {
         const response = await fetch('https://api.openai.com/v1/threads', {
             method: 'POST',
@@ -55,7 +64,7 @@ async function initAssistant() {
         });
 
         const data = await response.json();
-        thread = data.id;
+        return data.id;
 
     } catch (error) {
         console.error(error);
@@ -63,6 +72,11 @@ async function initAssistant() {
 
 }
 
+/**
+ * Añade un mensaje al contenedor para su analisis.
+ * @param {String} mensaje      Mensaje a almacenar
+ * @returns     Devuelve el id del mensaje
+ */
 async function mandarMesaje(mensaje) {
     try {
         const response = await fetch(`https://api.openai.com/v1/threads/${thread}/messages`, {
@@ -85,7 +99,12 @@ async function mandarMesaje(mensaje) {
     }
 }
 
-async function ejecutarMensaje() {
+/**
+ * Se encarga de poner en marcha el Assistant para que analice 
+ * los mensjes que hay en el contendedor
+ * @returns     Devuelde el id de la ejecución
+ */
+async function ejecutarAssistant() {
     try {
         const response = await fetch(`https://api.openai.com/v1/threads/${thread}/runs`, {
             method: 'POST',
@@ -107,12 +126,22 @@ async function ejecutarMensaje() {
 }
 
 
+/**
+ * Obtenemos la ejecución, aquí comprobaremos si es necesario
+ * realizar procedimientos extras como llamar a funciones.
+ * @param {String} idMensaje        Identificador del mensaje       
+ * @param {String} idRun            Identificador de la ejecución
+ */
 async function obtenerMensaje(idMensaje, idRun){
     let finished = false;
 
     while(!finished){
-        finished = await consultMessageStatus(idRun);
-        setTimeout(5000)
+        finished = await consultMessageStatus(idRun); //Requiere controlar los cancelled
+        /*
+        Como las peticiones tarda en procesarse, damos tiempo antes de
+        volver a consultar la petición.
+        */
+        setTimeout(10000);
     }
 
     try {
@@ -126,9 +155,6 @@ async function obtenerMensaje(idMensaje, idRun){
 
         const info = await response.json();
 
-        console.log(info);
-        
-
         if(info.first_id != idMensaje && info.last_id != null){
             if(info.data[0].content.length > 0){      
                 return info.data[0].content[0].text.value;
@@ -141,6 +167,12 @@ async function obtenerMensaje(idMensaje, idRun){
     }
 }
 
+/**
+ * Comprobamos el estado del mensaje. Este pueda estar procesandose
+ * o requerir acciones extras.
+ * @param {*} idRun         ID de la ejecucion
+ * @returns     Devuelve true cuando el mesaje se ha procesado
+ */
 async function consultMessageStatus(idRun) {
     try {
         const response = await fetch(`https://api.openai.com/v1/threads/${thread}/runs/${idRun}`, {
@@ -153,11 +185,9 @@ async function consultMessageStatus(idRun) {
 
         const data = await response.json();
 
-        console.log(data);
-
         if(data.status == "completed"){
             return true;
-        }else if(data.status == "requires_action"){
+        }else if(data.status == "requires_action"){ //Requiere acciones extras
             await requiredAction(data, idRun);
         }
 
@@ -166,10 +196,17 @@ async function consultMessageStatus(idRun) {
     }
 }
 
-
+/**
+ * Cuando se requiere acciones es necesario proporcionar infomación,
+ * para ello identificamos que necesita y llamamos la función 
+ * correspondiente
+ * @param {*} data          JSON devuelto por Open AI
+ * @param {*} idRun         ID de la ejecución
+ */
 async function requiredAction(data, idRun) {
-    let tools_output = []
+    let tools_output = [] //Es posible que se incluyan varias peticiones
     const tools = data.required_action.submit_tool_outputs.tool_calls;
+    //Iteramos todas las peticiones
     for(const tool of tools){
         if(tool.function.name == "get_weather_theater"){
             const datos = JSON.parse(tool.function.arguments);
@@ -184,11 +221,15 @@ async function requiredAction(data, idRun) {
     await sendRequiredAction(tools_output,idRun)
 }
 
+/**
+ * Informamos a la API de Assistant que la petición se resuelto,
+ * y mandamos la información necesaria.
+ * @param {*} tools_output      Respuesta a las peticiones  
+ * @param {*} runId             ID de la ejecución
+ */
 async function sendRequiredAction(tools_output, runId) {
-    console.log(JSON.stringify(tools_output));
-    
     try {
-        const response = await fetch(`https://api.openai.com/v1/threads/${thread}/runs/${runId}/submit_tool_outputs`, {
+        await fetch(`https://api.openai.com/v1/threads/${thread}/runs/${runId}/submit_tool_outputs`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
